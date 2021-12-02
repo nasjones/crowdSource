@@ -1,15 +1,13 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
 import Nav from "./Nav";
 import "./App.css";
+import AppRoutes from "./AppRoutes";
 
 function App() {
 	return (
 		<div className="App">
 			<Nav />
-			<Routes>
-				<Route path="/"></Route>
-			</Routes>
+			<AppRoutes />
 		</div>
 	);
 }
