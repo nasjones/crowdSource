@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "./views/Home";
-import LoginFormView from "./views/LoginFormView";
+import LoginForm from "./views/LoginForm";
+import SignUpForm from "./views/SignUpForm";
 import NotFound from "./NotFound";
 
 function AppRoutes() {
@@ -8,7 +9,8 @@ function AppRoutes() {
 		<div id="spacer">
 			<Routes>
 				<Route path="/" element={<Home />} />
-				<Route path="/login" element={<LoginFormView />} />
+				<Route path="/login" element={<LoginForm />} />
+				<Route path="/signup" element={<SignUpForm />} />
 				<Route path="*" element={<NotFound />} />
 			</Routes>
 		</div>

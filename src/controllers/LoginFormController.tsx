@@ -1,4 +1,4 @@
-import React from "react";
+import { ChangeEvent, FormEvent } from "react";
 import {
 	FormControl,
 	InputLabel,
@@ -10,21 +10,17 @@ import {
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import LoginFormModel from "../models/LoginFormModel";
-import { LoginData, LoginError } from "../interfaces";
+import { LoginData, LoginProps } from "../interfaces";
 
-function LoginFormController() {
-	const [FormValues, FormValuesUpdate] = React.useState<LoginData>({
-		username: "",
-		password: "",
-		showPassword: false,
-	});
-
-	const [FormError, FormErrorUpdate] = React.useState<LoginError>({
-		error: false,
-		message: "",
-	});
-
-	const handleChange = (evt: any) => {
+function LoginFormController({
+	FormValues,
+	FormValuesUpdate,
+	FormError,
+	FormErrorUpdate,
+	PwVisibility,
+	VisibilityUpdate,
+}: LoginProps) {
+	const handleChange = (evt: ChangeEvent<HTMLFormElement>) => {
 		const { name, value } = evt.target;
 		FormValuesUpdate((oldState: LoginData) => {
 			return { ...oldState, [name]: value };
@@ -32,14 +28,11 @@ function LoginFormController() {
 	};
 
 	const toggleShowPassword = () => {
-		FormValuesUpdate((oldState: LoginData) => {
-			return { ...oldState, showPassword: !oldState.showPassword };
-		});
+		VisibilityUpdate(!PwVisibility);
 	};
 
-	const handleSubmit = async (evt: any) => {
+	const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
 		evt.preventDefault();
-		console.log("submit");
 		const response: any = await LoginFormModel.submit(FormValues);
 		if (!response.success) {
 			FormErrorUpdate({ error: true, message: response.message });
@@ -47,14 +40,19 @@ function LoginFormController() {
 	};
 
 	return (
-		<form id="loginForm" onChange={handleChange} onSubmit={handleSubmit}>
-			<h1>Login Form</h1>
-			{FormError.error && (
-				<FormHelperText error={true} id="loginError">
-					{FormError.message}
-				</FormHelperText>
-			)}
-			<FormControl variant="outlined" className="loginInput">
+		<form
+			id="loginForm"
+			onChange={handleChange}
+			onSubmit={handleSubmit}
+			className="userForm"
+		>
+			<h1>Login</h1>
+			<div className="formError">
+				{FormError.error && (
+					<FormHelperText error={true}>{FormError.message}</FormHelperText>
+				)}
+			</div>
+			<FormControl variant="outlined" className="formInput">
 				<InputLabel htmlFor="loginUsername">Username</InputLabel>
 				<OutlinedInput
 					id="loginUsername"
@@ -65,11 +63,11 @@ function LoginFormController() {
 					required
 				/>
 			</FormControl>
-			<FormControl variant="outlined" className="loginInput">
+			<FormControl variant="outlined" className="formInput">
 				<InputLabel htmlFor="loginPassword">Password</InputLabel>
 				<OutlinedInput
 					id="loginPassword"
-					type={FormValues.showPassword ? "text" : "password"}
+					type={PwVisibility ? "text" : "password"}
 					name="password"
 					label="Password"
 					autoComplete="current-password"
@@ -81,19 +79,14 @@ function LoginFormController() {
 								onClick={toggleShowPassword}
 								edge="end"
 							>
-								{FormValues.showPassword ? <VisibilityOff /> : <Visibility />}
+								{PwVisibility ? <VisibilityOff /> : <Visibility />}
 							</IconButton>
 						</InputAdornment>
 					}
 				/>
 			</FormControl>
 
-			<Button
-				variant="outlined"
-				id="loginSubmit"
-				type="submit"
-				className="loginItem"
-			>
+			<Button variant="outlined" type="submit" className="formSubmit">
 				Submit
 			</Button>
 		</form>

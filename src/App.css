@@ -29,24 +29,32 @@ body {
 	border-radius: 5%;
 }
 
-/* Login form styles */
-#loginForm {
+/* Form styles */
+.userForm {
 	padding: 1rem;
 	display: flex;
 	flex-direction: column;
-	height: 20rem;
+
 	justify-content: space-evenly;
 }
 
-#loginForm > div {
+#loginForm {
+	height: 20rem;
+}
+
+#signupForm {
+	height: 35rem;
+}
+
+.userForm > .formInput {
 	margin: 0 20%;
 }
 
-#loginError,
-#loginSubmit {
+.userForm > .formSubmit,
+.userForm > .formError {
 	margin: 0 auto;
 }
 
-#loginSubmit {
+.formSubmit {
 	width: 5rem;
 }
