@@ -1,7 +1,15 @@
-import React from "react";
 import { Paper } from "@mui/material";
+import { useEffect, useContext } from "react";
+import { Link } from "react-router-dom";
+import { CheckLogin } from "../Helpers";
+import AuthContext from "../AuthContext";
 
 function Home() {
+	const { setAuth } = useContext(AuthContext);
+	useEffect(() => {
+		const auth = CheckLogin();
+		setAuth(auth);
+	}, []);
 	return (
 		<Paper elevation={3}>
 			<img
@@ -10,6 +18,20 @@ function Home() {
 				id="homeLogo"
 			/>
 			<h1>Welcome to Crowd Source</h1>
+			<div id="homeLinks">
+				{CheckLogin() ? (
+					<Link to="/products">Browse Ideas</Link>
+				) : (
+					<div className="userForm">
+						<span className="homeSpan">
+							Existing users: <Link to="/login">Login</Link>
+						</span>
+						<span className="homeSpan">
+							New here: <Link to="/signup">Sign Up</Link>
+						</span>
+					</div>
+				)}
+			</div>
 		</Paper>
 	);
 }

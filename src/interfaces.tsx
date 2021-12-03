@@ -30,3 +30,7 @@ export interface LoginProps extends FormProps {
 export interface SignUpProps extends FormProps {
 	FormValues: SignUpData;
 }
+export interface AuthContent {
+	auth: boolean;
+	setAuth: (input: boolean) => void;
+}

@@ -13,6 +13,10 @@ body {
 	flex-direction: row;
 	justify-content: space-between;
 }
+
+#navLeft > * {
+	margin: 0 0.5rem;
+}
 /* NotFound style */
 #notFound {
 	padding: 2rem;
@@ -28,14 +32,19 @@ body {
 	height: 10rem;
 	border-radius: 5%;
 }
+.homeSpan {
+	margin-top: 0.5rem;
+}
 
 /* Form styles */
 .userForm {
 	padding: 1rem;
 	display: flex;
 	flex-direction: column;
-
 	justify-content: space-evenly;
+}
+.MuiPaper-root {
+	padding: 0 1rem 1rem;
 }
 
 #loginForm {
@@ -57,4 +66,9 @@ body {
 
 .formSubmit {
 	width: 5rem;
+}
+
+/* Logout Form */
+#logoutForm > * {
+	margin-top: 0.5rem;
 }

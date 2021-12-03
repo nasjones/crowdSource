@@ -8,8 +8,8 @@ class LoginFormModel {
 			username: data.username,
 			password: data.password,
 		});
-		console.log(response);
-		AttachUserToSession(response.data.token, data.username);
+		if (!response.error)
+			AttachUserToSession(response.data.token, data.username);
 		return response;
 	}
 }

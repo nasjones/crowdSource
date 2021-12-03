@@ -13,9 +13,7 @@ const headers = {
 async function Fetch(endpoint: string) {
 	try {
 		ensureLeadingSlash(endpoint);
-
 		let response = await axios.get(`${BASE_API_URL}${endpoint}`, { headers });
-		console.log(response);
 		return response.data;
 	} catch (err) {
 		console.error(err);
@@ -35,8 +33,13 @@ async function Post(endpoint: string, data: object = {}) {
 		});
 		return { error: false, message: "", data: response.data };
 	} catch (err: any) {
-		console.log(err.response);
-		return { error: true, message: err.response.data.error.message };
+		const message = err.response
+			? err.response.data.error.message
+			: "Server Error";
+		return {
+			error: true,
+			message: message,
+		};
 	}
 }
 

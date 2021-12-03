@@ -11,6 +11,8 @@ import {
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import SignUpFormModel from "../models/SignUpFormModel";
 import { SignUpData, SignUpProps } from "../interfaces";
+import { CheckLogin } from "../Helpers";
+import { useNavigate } from "react-router-dom";
 
 function SignUpFormController({
 	FormValues,
@@ -20,6 +22,9 @@ function SignUpFormController({
 	PwVisibility,
 	VisibilityUpdate,
 }: SignUpProps) {
+	const navigate = useNavigate();
+
+	if (CheckLogin()) navigate("/");
 	const handleChange = (evt: ChangeEvent<HTMLFormElement>) => {
 		const { name, value } = evt.target;
 		FormValuesUpdate((oldState: SignUpData) => {
@@ -33,7 +38,6 @@ function SignUpFormController({
 
 	const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
 		evt.preventDefault();
-		console.log("submit");
 		const response: any = await SignUpFormModel.submit(FormValues);
 		if (!response.success) {
 			FormErrorUpdate({ error: true, message: response.message });

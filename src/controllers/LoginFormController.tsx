@@ -11,6 +11,8 @@ import {
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import LoginFormModel from "../models/LoginFormModel";
 import { LoginData, LoginProps } from "../interfaces";
+import { useNavigate } from "react-router-dom";
+import { CheckLogin } from "../Helpers";
 
 function LoginFormController({
 	FormValues,
@@ -20,6 +22,9 @@ function LoginFormController({
 	PwVisibility,
 	VisibilityUpdate,
 }: LoginProps) {
+	const navigate = useNavigate();
+	if (CheckLogin()) navigate("/");
+
 	const handleChange = (evt: ChangeEvent<HTMLFormElement>) => {
 		const { name, value } = evt.target;
 		FormValuesUpdate((oldState: LoginData) => {
@@ -34,8 +39,10 @@ function LoginFormController({
 	const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
 		evt.preventDefault();
 		const response: any = await LoginFormModel.submit(FormValues);
-		if (!response.success) {
+		if (response.error) {
 			FormErrorUpdate({ error: true, message: response.message });
+		} else {
+			navigate("/");
 		}
 	};
 
