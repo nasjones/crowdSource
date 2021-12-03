@@ -1,8 +1,7 @@
 import { AppBar } from "@mui/material";
 import { Link } from "react-router-dom";
-import "./Nav.css";
+
 function Nav() {
-	// console.log(Navbar);
 	return (
 		<AppBar id="navBar">
 			<div>
