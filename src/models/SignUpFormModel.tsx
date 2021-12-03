@@ -1,5 +1,6 @@
 import Api from "../Api";
 import { SignUpData } from "../interfaces";
+import { AttachUserToSession } from "../Helpers";
 
 class SignUpFormModel {
 	static async submit(data: SignUpData) {
@@ -10,6 +11,7 @@ class SignUpFormModel {
 			lastName: data.lastName,
 			email: data.email,
 		});
+		AttachUserToSession(response.data.token, data.username);
 		return response;
 	}
 }

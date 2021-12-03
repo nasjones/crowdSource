@@ -1,6 +1,9 @@
 import axios from "axios";
-const BASE_API_URL = process.env.BASE_API_URL || "http://localhost:8000";
 
+const BASE_API_URL = process.env.BASE_API_URL || "http://localhost:8000";
+const headers = {
+	Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+};
 /**
  *
  * @param endpoint The endpoint of the api you wish to get info from
@@ -9,11 +12,11 @@ const BASE_API_URL = process.env.BASE_API_URL || "http://localhost:8000";
  */
 async function Fetch(endpoint: string) {
 	try {
-		if (endpoint[0] !== "/") {
-			throw new ErrorEvent("First character of endpoint must be '/'");
-		}
-		let response = await axios.get(`${BASE_API_URL}${endpoint}`);
+		ensureLeadingSlash(endpoint);
+
+		let response = await axios.get(`${BASE_API_URL}${endpoint}`, { headers });
 		console.log(response);
+		return response.data;
 	} catch (err) {
 		console.error(err);
 	}
@@ -26,12 +29,20 @@ async function Fetch(endpoint: string) {
  */
 async function Post(endpoint: string, data: object = {}) {
 	try {
-		let response = await axios.post(`${BASE_API_URL}${endpoint}`, data);
-		console.log(response);
-		return { error: false, message: "" };
+		ensureLeadingSlash(endpoint);
+		let response = await axios.post(`${BASE_API_URL}${endpoint}`, data, {
+			headers,
+		});
+		return { error: false, message: "", data: response.data };
 	} catch (err: any) {
 		console.log(err.response);
 		return { error: true, message: err.response.data.error.message };
+	}
+}
+
+function ensureLeadingSlash(endpoint: string) {
+	if (endpoint[0] !== "/") {
+		throw new ErrorEvent("First character of endpoint must be '/'");
 	}
 }
 

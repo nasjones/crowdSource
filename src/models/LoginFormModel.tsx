@@ -1,5 +1,6 @@
 import Api from "../Api";
 import { LoginData } from "../interfaces";
+import { AttachUserToSession } from "../Helpers";
 
 class LoginFormModel {
 	static async submit(data: LoginData) {
@@ -7,6 +8,8 @@ class LoginFormModel {
 			username: data.username,
 			password: data.password,
 		});
+		console.log(response);
+		AttachUserToSession(response.data.token, data.username);
 		return response;
 	}
 }
