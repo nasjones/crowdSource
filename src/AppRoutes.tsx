@@ -5,6 +5,7 @@ import Logout from "./views/Logout";
 import SignUpForm from "./views/SignUpForm";
 import ProductList from "./views/ProductList";
 import ProductDisplay from "./views/ProductDisplay";
+import ProductForm from "./views/ProductForm";
 import NotFound from "./NotFound";
 
 function AppRoutes() {
@@ -17,6 +18,8 @@ function AppRoutes() {
 				<Route path="/signup" element={<SignUpForm />} />
 				<Route path="/products" element={<ProductList />} />
 				<Route path="/products/:id" element={<ProductDisplay />} />
+				<Route path="/createproduct" element={<ProductForm />} />
+
 				<Route path="*" element={<NotFound />} />
 			</Routes>
 		</div>

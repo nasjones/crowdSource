@@ -1,4 +1,4 @@
-import { Paper, Button } from "@mui/material";
+import { Card, Button } from "@mui/material";
 import { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { CheckLogin } from "../Helpers";
@@ -11,7 +11,7 @@ function Home() {
 		setAuth(auth);
 	}, [setAuth]);
 	return (
-		<Paper elevation={3}>
+		<Card elevation={3}>
 			<img
 				src="/Crowd-Source-logo.jpeg"
 				alt="Crowd source logo"
@@ -34,7 +34,7 @@ function Home() {
 					</div>
 				)}
 			</div>
-		</Paper>
+		</Card>
 	);
 }
 

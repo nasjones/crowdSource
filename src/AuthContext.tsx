@@ -3,7 +3,7 @@ import { AuthContent } from "./interfaces";
 
 const AuthContext = createContext<AuthContent>({
 	auth: false,
-	setAuth: () => {},
+	setAuth: (auth) => {},
 });
 
 export default AuthContext;

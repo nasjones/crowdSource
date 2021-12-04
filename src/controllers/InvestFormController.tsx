@@ -7,6 +7,7 @@ import {
 	OutlinedInput,
 	InputAdornment,
 	Button,
+	FormHelperText,
 } from "@mui/material";
 import InvestFormModel from "../models/InvestFormModel";
 
@@ -14,6 +15,8 @@ function InvestFormController({
 	Amount,
 	AmountUpdate,
 	AlertUpdate,
+	FormError,
+	FormErrorUpdate,
 }: InvestControllerProps) {
 	const { id } = useParams();
 	const username = window.sessionStorage.getItem("username");
@@ -29,7 +32,11 @@ function InvestFormController({
 			productId: id!,
 			amount: Amount,
 		});
-		AlertUpdate({ message: response.data.message, alert: true });
+		if (response.error) {
+			FormErrorUpdate({ error: true, message: response.message });
+		} else {
+			AlertUpdate({ message: response.data.message, alert: true });
+		}
 	};
 	return (
 		<form
@@ -39,6 +46,13 @@ function InvestFormController({
 			id="investForm"
 		>
 			<h3>invest</h3>
+			<div className="formError">
+				{FormError.error && (
+					<FormHelperText error={true} className="formError">
+						{FormError.message}
+					</FormHelperText>
+				)}
+			</div>
 			<FormControl variant="outlined" className="formInput">
 				<InputLabel htmlFor="investAmount">Amount</InputLabel>
 				<OutlinedInput
@@ -47,8 +61,7 @@ function InvestFormController({
 					label="Amount"
 					name="amount"
 					inputMode="decimal"
-					defaultValue={0.01}
-					inputProps={{ step: ".01", min: ".01" }}
+					inputProps={{ step: ".01", min: ".01", max: "9999999.99" }}
 					startAdornment={<InputAdornment position="start">$</InputAdornment>}
 					required
 				/>

@@ -14,7 +14,8 @@ body {
 	justify-content: space-between;
 }
 
-#navLeft > * {
+#navLeft > *,
+#navRight > * {
 	margin: 0 0.5rem;
 }
 /* NotFound style */
@@ -69,7 +70,8 @@ body {
 }
 
 #logoutForm > *,
-#investForm > * {
+#investForm > *,
+#productForm > * {
 	margin-top: 0.5rem;
 }
 
@@ -95,4 +97,9 @@ body {
 #progressBar {
 	height: 1rem;
 	border-radius: 5px;
+}
+
+a:visited,
+a {
+	color: inherit;
 }

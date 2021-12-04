@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { Paper } from "@mui/material";
+import { Card } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import LoginFormController from "../controllers/LoginFormController";
 import { LoginData, ErrorStatus } from "../interfaces";
@@ -12,6 +12,7 @@ function LoginForm() {
 	useEffect(() => {
 		if (AuthStatus.auth) navigate("/");
 	});
+
 	const [FormValues, FormValuesUpdate] = useState<LoginData>({
 		username: "",
 		password: "",
@@ -24,7 +25,7 @@ function LoginForm() {
 	});
 
 	return (
-		<Paper elevation={3}>
+		<Card elevation={3}>
 			<LoginFormController
 				FormValues={FormValues}
 				FormValuesUpdate={FormValuesUpdate}
@@ -36,7 +37,7 @@ function LoginForm() {
 			<span>
 				Don't have an account? <Link to="/signup">Sign up here.</Link>
 			</span>
-		</Paper>
+		</Card>
 	);
 }
 

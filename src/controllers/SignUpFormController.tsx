@@ -25,6 +25,7 @@ function SignUpFormController({
 	const navigate = useNavigate();
 
 	if (CheckLogin()) navigate("/");
+
 	const handleChange = (evt: ChangeEvent<HTMLFormElement>) => {
 		const { name, value } = evt.target;
 		FormValuesUpdate((oldState: SignUpData) => {
@@ -33,7 +34,7 @@ function SignUpFormController({
 	};
 
 	const togglePWVisibility = () => {
-		VisibilityUpdate(!PwVisibility);
+		VisibilityUpdate(!PwVisibility)!;
 	};
 
 	const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
@@ -41,8 +42,11 @@ function SignUpFormController({
 		const response: any = await SignUpFormModel.submit(FormValues);
 		if (!response.success) {
 			FormErrorUpdate({ error: true, message: response.message });
+		} else {
+			navigate("/");
 		}
 	};
+
 	return (
 		<form
 			className="userForm"

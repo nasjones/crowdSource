@@ -5,8 +5,7 @@ import { AttachUserToSession } from "../Helpers";
 class LoginFormModel {
 	static async submit(data: LoginData) {
 		const response = await Api.Post("/auth/login", {
-			username: data.username,
-			password: data.password,
+			...data,
 		});
 		if (!response.error)
 			AttachUserToSession(response.data.token, data.username);

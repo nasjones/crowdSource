@@ -1,5 +1,5 @@
 import { AppBar } from "@mui/material";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import AuthContext from "./AuthContext";
 import { useContext } from "react";
 
@@ -9,16 +9,20 @@ function Nav() {
 	return (
 		<AppBar id="navBar">
 			<div id="navLeft">
-				<Link to="/">Home</Link>
-				<Link to="/products">Products</Link>
+				<NavLink to="/">Home</NavLink>
+				<NavLink to="/products">Products</NavLink>
 			</div>
-			<div id="navRight">
-				{auth ? (
-					<Link to="/logout">logout</Link>
-				) : (
-					<Link to="/login">login</Link>
-				)}
-			</div>
+
+			{auth ? (
+				<div id="navRight">
+					<NavLink to="/createproduct">Create Product</NavLink>
+					<NavLink to="/logout">logout</NavLink>
+				</div>
+			) : (
+				<div id="navRight">
+					<NavLink to="/login">login</NavLink>
+				</div>
+			)}
 		</AppBar>
 	);
 }

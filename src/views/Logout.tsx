@@ -1,4 +1,4 @@
-import { Paper, Button } from "@mui/material";
+import { Card, Button } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { ClearSession } from "../Helpers";
 import AuthContext from "../AuthContext";
@@ -12,14 +12,14 @@ function Logout() {
 		if (!AuthStatus.auth) navigate("/");
 	});
 
-	const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
 		evt.preventDefault();
 		ClearSession();
 		AuthStatus.setAuth(false);
 		navigate("/");
 	};
 	return (
-		<Paper>
+		<Card>
 			<h2>Are you sure you want to log out?</h2>
 			<form className="userForm" id="logoutForm" onSubmit={handleSubmit}>
 				<Button variant="outlined" type="submit" className="formSubmit">
@@ -27,7 +27,7 @@ function Logout() {
 				</Button>
 				<Link to="/">No, take me back home!</Link>
 			</form>
-		</Paper>
+		</Card>
 	);
 }
 
