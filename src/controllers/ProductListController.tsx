@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ProductListModel from "../models/ProductListModel";
+import { ProductCardInfo } from "../interfaces";
 import ProductCard from "../views/ProductCard";
 
 function ProductListController() {
@@ -8,19 +9,11 @@ function ProductListController() {
 		const getProducts = async () => {
 			const products = await ProductListModel.getProducts();
 			UpdateProducts(
-				products.map((product: any) => {
-					console.log(product);
-					product = {
-						...product,
-						amountSought: Number(product.amount_sought),
-						id: product.product_id,
-						fullName: `${product.first_name} ${product.last_name}`,
-					};
-
+				products.map((product: ProductCardInfo) => {
 					return (
 						<ProductCard
 							{...product}
-							key={`product-${product.name}-${product.id}`}
+							key={`product-${product.title}-${product.id}`}
 						/>
 					);
 				})

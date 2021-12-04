@@ -1,4 +1,4 @@
-import { ProductCardProps } from "../interfaces";
+import { ProductCardInfo } from "../interfaces";
 import {
 	Card,
 	CardContent,
@@ -14,7 +14,7 @@ function ProductCard({
 	amountSought,
 	fullName,
 	id,
-}: ProductCardProps) {
+}: ProductCardInfo) {
 	const navigate = useNavigate();
 	return (
 		<Card>

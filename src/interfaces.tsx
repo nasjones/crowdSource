@@ -35,10 +35,15 @@ export interface AuthContent {
 	setAuth: (input: boolean) => void;
 }
 
-export interface ProductCardProps {
+export interface ProductCardInfo {
 	id: Number;
 	title: string;
 	synopsis: string;
-	amountSought: Number;
+	amountSought: string;
 	fullName: string;
+}
+
+export interface ProductFullInfo extends ProductCardInfo {
+	funded: string;
+	description: string;
 }
