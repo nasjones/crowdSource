@@ -1,7 +1,7 @@
 import Api from "../Api";
 
 class ProductDisplayModel {
-	static async getProduct(id: string | undefined) {
+	static async getProduct(id: string) {
 		if (id === undefined) return {};
 		let response = await Api.Fetch(`/products/${id}`);
 		response = {
@@ -9,6 +9,7 @@ class ProductDisplayModel {
 			amountSought: response.amount_sought,
 			id: response.product_id,
 			fullName: response.full_name,
+			funded: response.funded || "0.00",
 		};
 		delete response.amount_sought;
 		delete response.full_name;

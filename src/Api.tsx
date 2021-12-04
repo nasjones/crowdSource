@@ -33,6 +33,7 @@ async function Post(endpoint: string, data: object = {}) {
 		});
 		return { error: false, message: "", data: response.data };
 	} catch (err: any) {
+		console.log(err);
 		const message = err.response
 			? err.response.data.error.message
 			: "Server Error";

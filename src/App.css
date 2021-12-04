@@ -68,8 +68,8 @@ body {
 	width: 5rem;
 }
 
-/* Logout Form */
-#logoutForm > * {
+#logoutForm > *,
+#investForm > * {
 	margin-top: 0.5rem;
 }
 
@@ -90,4 +90,9 @@ body {
 /* Product card */
 .synopsis {
 	font-style: italic;
+}
+
+#progressBar {
+	height: 1rem;
+	border-radius: 5px;
 }

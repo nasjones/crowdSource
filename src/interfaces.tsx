@@ -36,7 +36,7 @@ export interface AuthContent {
 }
 
 export interface ProductCardInfo {
-	id: Number;
+	id: number;
 	title: string;
 	synopsis: string;
 	amountSought: string;
@@ -46,4 +46,16 @@ export interface ProductCardInfo {
 export interface ProductFullInfo extends ProductCardInfo {
 	funded: string;
 	description: string;
+}
+
+export interface InvestData {
+	amount: number;
+	productId: string;
+	username: string;
+}
+
+export interface InvestControllerProps {
+	Amount: number;
+	AmountUpdate: React.Dispatch<React.SetStateAction<number>>;
+	AlertUpdate: React.Dispatch<React.SetStateAction<any>>;
 }
