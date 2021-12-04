@@ -72,3 +72,22 @@ body {
 #logoutForm > * {
 	margin-top: 0.5rem;
 }
+
+/* Product List */
+#productDisplay {
+	display: flex;
+	flex-direction: column;
+}
+
+#productDisplay > * {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin: 1rem;
+	flex-basis: fit-content;
+}
+
+/* Product card */
+.synopsis {
+	font-style: italic;
+}

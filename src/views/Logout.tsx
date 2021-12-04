@@ -1,16 +1,21 @@
 import { Paper, Button } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
-import { ClearSession, CheckLogin } from "../Helpers";
-import { FormEvent } from "react";
+import { ClearSession } from "../Helpers";
+import AuthContext from "../AuthContext";
+import { FormEvent, useContext, useEffect } from "react";
 
 function Logout() {
 	const navigate = useNavigate();
-	console.log(!CheckLogin());
-	if (!CheckLogin()) navigate("/");
+	const AuthStatus = useContext(AuthContext);
+
+	useEffect(() => {
+		if (!AuthStatus.auth) navigate("/");
+	});
 
 	const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
 		evt.preventDefault();
 		ClearSession();
+		AuthStatus.setAuth(false);
 		navigate("/");
 	};
 	return (

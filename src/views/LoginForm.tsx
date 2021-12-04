@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Paper } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LoginFormController from "../controllers/LoginFormController";
 import { LoginData, ErrorStatus } from "../interfaces";
+import AuthContext from "../AuthContext";
 
 function LoginForm() {
+	const navigate = useNavigate();
+	const AuthStatus = useContext(AuthContext);
+
+	useEffect(() => {
+		if (AuthStatus.auth) navigate("/");
+	});
 	const [FormValues, FormValuesUpdate] = useState<LoginData>({
 		username: "",
 		password: "",

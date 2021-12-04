@@ -1,4 +1,4 @@
-import { Paper } from "@mui/material";
+import { Paper, Button } from "@mui/material";
 import { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { CheckLogin } from "../Helpers";
@@ -9,7 +9,7 @@ function Home() {
 	useEffect(() => {
 		const auth = CheckLogin();
 		setAuth(auth);
-	}, []);
+	}, [setAuth]);
 	return (
 		<Paper elevation={3}>
 			<img
@@ -20,7 +20,9 @@ function Home() {
 			<h1>Welcome to Crowd Source</h1>
 			<div id="homeLinks">
 				{CheckLogin() ? (
-					<Link to="/products">Browse Ideas</Link>
+					<Link to="/products">
+						<Button variant="outlined">Browse Ideas</Button>
+					</Link>
 				) : (
 					<div className="userForm">
 						<span className="homeSpan">
