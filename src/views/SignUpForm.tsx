@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Card } from "@mui/material";
+import { Card, Alert } from "@mui/material";
 import { Link } from "react-router-dom";
 import SignUpFormController from "../controllers/SignUpFormController";
-import { SignUpData, ErrorStatus } from "../interfaces";
+import { SignUpData, AlertStatus } from "../interfaces";
 
 function SignUpForm() {
 	const [FormValues, FormValuesUpdate] = useState<SignUpData>({
@@ -14,22 +14,23 @@ function SignUpForm() {
 	});
 
 	const [PwVisibility, VisibilityUpdate] = useState(false);
-
-	const [FormError, FormErrorUpdate] = useState<ErrorStatus>({
-		error: false,
+	const [AlertDisplay, AlertUpdate] = useState<AlertStatus>({
 		message: "",
+		alert: false,
+		type: undefined,
 	});
-
 	return (
 		<Card elevation={3}>
 			<SignUpFormController
 				FormValues={FormValues}
 				FormValuesUpdate={FormValuesUpdate}
-				FormError={FormError}
-				FormErrorUpdate={FormErrorUpdate}
 				PwVisibility={PwVisibility}
 				VisibilityUpdate={VisibilityUpdate}
+				AlertUpdate={AlertUpdate}
 			/>
+			{AlertDisplay.alert && (
+				<Alert severity={AlertDisplay.type}>{AlertDisplay.message}</Alert>
+			)}
 			<span>
 				Already have an account? <Link to="/login">Login here.</Link>
 			</span>

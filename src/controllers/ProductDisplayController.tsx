@@ -32,7 +32,9 @@ function ProductDisplayController({ id }: { id: string }) {
 					{Product.synopsis || "no synopsis"}
 				</Typography>
 				<Typography variant="body1">{Product.description}</Typography>
-				<Typography variant="body2">{`Seeking: ${Product.amountSought}`}</Typography>
+				<Typography variant="body2">{`Seeking: ${Number(
+					Product.amountSought
+				).toLocaleString()}`}</Typography>
 			</CardContent>
 		</div>
 	);

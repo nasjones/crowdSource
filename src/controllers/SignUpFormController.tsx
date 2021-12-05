@@ -1,11 +1,10 @@
-import React, { ChangeEvent, FormEvent, useEffect } from "react";
+import React, { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import {
 	FormControl,
 	InputLabel,
 	OutlinedInput,
 	InputAdornment,
 	IconButton,
-	Button,
 	FormHelperText,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
@@ -13,19 +12,21 @@ import SignUpFormModel from "../models/SignUpFormModel";
 import { SignUpData, SignUpProps } from "../interfaces";
 import { CheckLogin, InitiatePaymentAuth } from "../Helpers";
 import { useNavigate } from "react-router-dom";
+import SubmitButton from "../views/SubmitButton";
 
 function SignUpFormController({
 	FormValues,
 	FormValuesUpdate,
-	FormError,
-	FormErrorUpdate,
 	PwVisibility,
 	VisibilityUpdate,
+	AlertUpdate,
 }: SignUpProps) {
 	const navigate = useNavigate();
 	useEffect(() => {
 		if (CheckLogin()) navigate("/");
 	}, [navigate]);
+
+	const [submitState, toggleSubmit] = useState<boolean>(false);
 
 	const handleChange = (evt: ChangeEvent<HTMLFormElement>) => {
 		const { name, value } = evt.target;
@@ -39,10 +40,12 @@ function SignUpFormController({
 	};
 
 	const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
+		toggleSubmit(true);
 		evt.preventDefault();
 		const response: any = await SignUpFormModel.submit(FormValues);
 		if (response.error) {
-			FormErrorUpdate({ error: true, message: response.message });
+			AlertUpdate({ alert: true, message: response.message, type: "error" });
+			toggleSubmit(false);
 		} else {
 			const paymentResponse = await SignUpFormModel.paymentAuth();
 			InitiatePaymentAuth(paymentResponse.accountLink.url);
@@ -57,13 +60,13 @@ function SignUpFormController({
 			onSubmit={handleSubmit}
 		>
 			<h1>Sign Up</h1>
-			<div className="formError">
+			{/* <div className="formError">
 				{FormError.error && (
 					<FormHelperText error={true} className="formError">
 						{FormError.message}
 					</FormHelperText>
 				)}
-			</div>
+			</div> */}
 			<FormControl variant="outlined" className="formInput">
 				<InputLabel htmlFor="firstName">First Name</InputLabel>
 				<OutlinedInput
@@ -135,9 +138,7 @@ function SignUpFormController({
 				<FormHelperText>minLength:4 / maxLength:25</FormHelperText>
 			</FormControl>
 
-			<Button variant="outlined" type="submit" className="formSubmit">
-				Submit
-			</Button>
+			<SubmitButton submitting={submitState} text={"submit"} />
 		</form>
 	);
 }

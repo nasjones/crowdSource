@@ -1,26 +1,24 @@
-import React, { ChangeEvent, FormEvent } from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import {
 	FormControl,
 	InputLabel,
 	OutlinedInput,
 	InputAdornment,
 	IconButton,
-	Button,
-	FormHelperText,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import LoginFormModel from "../models/LoginFormModel";
 import { LoginData, LoginProps } from "../interfaces";
 import { useNavigate } from "react-router-dom";
 import { CheckLogin } from "../Helpers";
+import SubmitButton from "../views/SubmitButton";
 
 function LoginFormController({
 	FormValues,
 	FormValuesUpdate,
-	FormError,
-	FormErrorUpdate,
 	PwVisibility,
 	VisibilityUpdate,
+	AlertUpdate,
 }: LoginProps) {
 	const navigate = useNavigate();
 	if (CheckLogin()) navigate("/");
@@ -32,15 +30,19 @@ function LoginFormController({
 		});
 	};
 
+	const [submitState, toggleSubmit] = useState<boolean>(false);
+
 	const toggleShowPassword = () => {
 		VisibilityUpdate(!PwVisibility);
 	};
 
 	const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
 		evt.preventDefault();
+		toggleSubmit(true);
 		const response: any = await LoginFormModel.submit(FormValues);
 		if (response.error) {
-			FormErrorUpdate({ error: true, message: response.message });
+			toggleSubmit(false);
+			AlertUpdate({ alert: true, message: response.message, type: "error" });
 		} else {
 			navigate("/");
 		}
@@ -54,11 +56,6 @@ function LoginFormController({
 			className="userForm"
 		>
 			<h1>Login</h1>
-			<div className="formError">
-				{FormError.error && (
-					<FormHelperText error={true}>{FormError.message}</FormHelperText>
-				)}
-			</div>
 
 			<FormControl variant="outlined" className="formInput">
 				<InputLabel htmlFor="loginUsername">Username</InputLabel>
@@ -95,10 +92,7 @@ function LoginFormController({
 					}
 				/>
 			</FormControl>
-
-			<Button variant="outlined" type="submit" className="formSubmit">
-				Submit
-			</Button>
+			<SubmitButton submitting={submitState} text={"submit"} />
 		</form>
 	);
 }

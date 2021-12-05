@@ -24,7 +24,7 @@ function ProductCard({
 				<Typography variant="body1" className="synopsis">
 					{synopsis || "No synopsis available."}
 					<br />
-					{`Seeking: ${amountSought}`}
+					{`Seeking: ${Number(amountSought).toLocaleString()}`}
 				</Typography>
 			</CardContent>
 

@@ -1,13 +1,14 @@
 import React from "react";
-
+import { AlertColor } from "@mui/material";
 export interface LoginData {
 	username: string;
 	password: string;
 }
 
-export interface ErrorStatus {
-	error: boolean;
+export interface AlertStatus {
+	alert: boolean;
 	message: string;
+	type: AlertColor | undefined;
 }
 
 export interface SignUpData extends LoginData {
@@ -18,8 +19,7 @@ export interface SignUpData extends LoginData {
 
 interface FormProps {
 	FormValuesUpdate: React.Dispatch<React.SetStateAction<any>>;
-	FormError: ErrorStatus;
-	FormErrorUpdate: React.Dispatch<React.SetStateAction<any>>;
+	AlertUpdate: React.Dispatch<React.SetStateAction<AlertStatus>>;
 }
 
 export interface LoginProps extends FormProps {
@@ -57,9 +57,7 @@ export interface InvestData {
 }
 
 export interface InvestControllerProps {
-	AlertUpdate: React.Dispatch<React.SetStateAction<any>>;
-	FormError: ErrorStatus;
-	FormErrorUpdate: React.Dispatch<React.SetStateAction<any>>;
+	AlertUpdate: React.Dispatch<React.SetStateAction<AlertStatus>>;
 	Amount: number;
 	AmountUpdate: React.Dispatch<React.SetStateAction<number>>;
 }
@@ -75,4 +73,9 @@ export interface ProductData {
 export interface ProductFormProps extends FormProps {
 	FormValues: ProductData;
 	AlertUpdate: React.Dispatch<React.SetStateAction<any>>;
+}
+
+export interface SubmitButtonInterface {
+	submitting: boolean;
+	text: string;
 }

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { Card, Alert } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import ProductFormController from "../controllers/ProductFormController";
-import { ProductData, ErrorStatus } from "../interfaces";
+import { ProductData, AlertStatus } from "../interfaces";
 import AuthContext from "../AuthContext";
 
 function ProductForm() {
@@ -21,14 +21,10 @@ function ProductForm() {
 		username: "",
 	});
 
-	const [AlertDisplay, AlertUpdate] = useState<any>({
+	const [AlertDisplay, AlertUpdate] = useState<AlertStatus>({
 		message: "",
 		alert: false,
-	});
-
-	const [FormError, FormErrorUpdate] = useState<ErrorStatus>({
-		error: false,
-		message: "",
+		type: undefined,
 	});
 
 	return (
@@ -36,12 +32,10 @@ function ProductForm() {
 			<ProductFormController
 				FormValues={FormValues}
 				FormValuesUpdate={FormValuesUpdate}
-				FormError={FormError}
-				FormErrorUpdate={FormErrorUpdate}
 				AlertUpdate={AlertUpdate}
 			/>
 			{AlertDisplay.alert && (
-				<Alert severity="success">{AlertDisplay.message}</Alert>
+				<Alert severity={AlertDisplay.type}>{AlertDisplay.message}</Alert>
 			)}
 		</Card>
 	);

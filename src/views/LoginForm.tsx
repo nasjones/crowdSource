@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Card } from "@mui/material";
+import { Card, Alert } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import LoginFormController from "../controllers/LoginFormController";
-import { LoginData, ErrorStatus } from "../interfaces";
+import { LoginData, AlertStatus } from "../interfaces";
 import AuthContext from "../AuthContext";
 
 function LoginForm() {
@@ -19,9 +19,10 @@ function LoginForm() {
 	});
 	const [PwVisibility, VisibilityUpdate] = useState(false);
 
-	const [FormError, FormErrorUpdate] = useState<ErrorStatus>({
-		error: false,
+	const [AlertDisplay, AlertUpdate] = useState<AlertStatus>({
 		message: "",
+		alert: false,
+		type: undefined,
 	});
 
 	return (
@@ -29,11 +30,13 @@ function LoginForm() {
 			<LoginFormController
 				FormValues={FormValues}
 				FormValuesUpdate={FormValuesUpdate}
-				FormError={FormError}
-				FormErrorUpdate={FormErrorUpdate}
 				PwVisibility={PwVisibility}
 				VisibilityUpdate={VisibilityUpdate}
+				AlertUpdate={AlertUpdate}
 			/>
+			{AlertDisplay.alert && (
+				<Alert severity={AlertDisplay.type}>{AlertDisplay.message}</Alert>
+			)}
 			<span>
 				Don't have an account? <Link to="/signup">Sign up here.</Link>
 			</span>

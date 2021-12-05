@@ -1,22 +1,22 @@
 import { ProductData, ProductFormProps } from "../interfaces";
-import React, { ChangeEvent, FormEvent } from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 import ProductFormModel from "../models/ProductFormModel";
 import {
 	FormControl,
 	InputLabel,
 	OutlinedInput,
-	Button,
 	FormHelperText,
 	InputAdornment,
 } from "@mui/material";
+import SubmitButton from "../views/SubmitButton";
 
 function ProductFormController({
 	FormValues,
 	FormValuesUpdate,
-	FormError,
-	FormErrorUpdate,
 	AlertUpdate,
 }: ProductFormProps) {
+	const [submitState, toggleSubmit] = useState<boolean>(false);
+
 	const handleChange = (evt: ChangeEvent<HTMLFormElement>) => {
 		const { name, value } = evt.target;
 		FormValuesUpdate((oldState: ProductData) => {
@@ -26,15 +26,21 @@ function ProductFormController({
 
 	const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
 		evt.preventDefault();
+		toggleSubmit(true);
 		const response: any = await ProductFormModel.submit({
 			...FormValues,
 			username: window.sessionStorage.getItem("username")!,
 		});
 		if (response.error) {
-			FormErrorUpdate({ error: true, message: response.message });
+			AlertUpdate({ alert: true, message: response.message, type: "error" });
 		} else {
-			AlertUpdate({ message: response.data.message, alert: true });
+			AlertUpdate({
+				message: response.data.message,
+				alert: true,
+				type: "success",
+			});
 		}
+		toggleSubmit(false);
 	};
 	return (
 		<form
@@ -44,13 +50,13 @@ function ProductFormController({
 			onSubmit={handleSubmit}
 		>
 			<h1>Product Form</h1>
-			<div className="formError">
+			{/* <div className="formError">
 				{FormError.error && (
 					<FormHelperText error={true} className="formError">
 						{FormError.message}
 					</FormHelperText>
 				)}
-			</div>
+			</div> */}
 			<FormControl variant="outlined" className="formInput">
 				<InputLabel htmlFor="title">Title</InputLabel>
 				<OutlinedInput
@@ -98,9 +104,7 @@ function ProductFormController({
 				/>
 			</FormControl>
 
-			<Button variant="outlined" type="submit" className="formSubmit">
-				Submit
-			</Button>
+			<SubmitButton submitting={submitState} text={"submit"} />
 		</form>
 	);
 }

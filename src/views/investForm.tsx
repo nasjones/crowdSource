@@ -3,19 +3,16 @@ import { Card, Alert } from "@mui/material";
 import InvestFormController from "../controllers/InvestFormController";
 import AuthContext from "../AuthContext";
 import { Link } from "react-router-dom";
-import { ErrorStatus } from "../interfaces";
+import { AlertStatus } from "../interfaces";
 
 function InvestForm() {
 	const AuthStatus = useContext(AuthContext);
 
 	const [Amount, AmountUpdate] = useState<number>(0.0);
-	const [AlertDisplay, AlertUpdate] = useState<any>({
+	const [AlertDisplay, AlertUpdate] = useState<AlertStatus>({
 		message: "",
 		alert: false,
-	});
-	const [FormError, FormErrorUpdate] = useState<ErrorStatus>({
-		error: false,
-		message: "",
+		type: undefined,
 	});
 
 	return (
@@ -25,8 +22,6 @@ function InvestForm() {
 					Amount={Amount}
 					AmountUpdate={AmountUpdate}
 					AlertUpdate={AlertUpdate}
-					FormError={FormError}
-					FormErrorUpdate={FormErrorUpdate}
 				/>
 			) : (
 				<h3>
@@ -34,7 +29,7 @@ function InvestForm() {
 				</h3>
 			)}
 			{AlertDisplay.alert && (
-				<Alert severity="success">{AlertDisplay.message}</Alert>
+				<Alert severity={AlertDisplay.type}>{AlertDisplay.message}</Alert>
 			)}
 		</Card>
 	);
