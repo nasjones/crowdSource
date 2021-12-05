@@ -4,6 +4,7 @@ import AppRoutes from "./AppRoutes";
 import { CheckLogin } from "./Helpers";
 import { useState } from "react";
 import AuthContext from "./AuthContext";
+require("dotenv").config();
 
 function App() {
 	const [auth, setAuth] = useState<boolean>(CheckLogin());

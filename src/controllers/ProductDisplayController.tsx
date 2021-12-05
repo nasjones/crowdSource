@@ -1,10 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-	CardHeader,
-	CardContent,
-	Typography,
-	LinearProgress,
-} from "@mui/material";
+import { CardHeader, CardContent, Typography } from "@mui/material";
 import ProductDisplayModel from "../models/ProductDisplayModel";
 import { ProductFullInfo } from "../interfaces";
 
@@ -16,7 +11,6 @@ function ProductDisplayController({ id }: { id: string }) {
 		amountSought: "",
 		fullName: "",
 		description: "",
-		funded: "",
 	});
 	const [loading, setLoading] = useState<boolean>(true);
 
@@ -38,17 +32,7 @@ function ProductDisplayController({ id }: { id: string }) {
 					{Product.synopsis || "no synopsis"}
 				</Typography>
 				<Typography variant="body1">{Product.description}</Typography>
-				<Typography variant="body2">{`Current funding: ${Product.funded} / ${Product.amountSought}`}</Typography>
-				<LinearProgress
-					id="progressBar"
-					variant="determinate"
-					color={
-						Number(Product.funded) > Number(Product.amountSought)
-							? "success"
-							: "primary"
-					}
-					value={(Number(Product.funded) / Number(Product.amountSought)) * 100}
-				/>
+				<Typography variant="body2">{`Seeking: ${Product.amountSought}`}</Typography>
 			</CardContent>
 		</div>
 	);

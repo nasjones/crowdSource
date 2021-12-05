@@ -1,9 +1,6 @@
 import axios from "axios";
 
 const BASE_API_URL = process.env.BASE_API_URL || "http://localhost:8000";
-const headers = {
-	Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-};
 /**
  *
  * @param endpoint The endpoint of the api you wish to get info from

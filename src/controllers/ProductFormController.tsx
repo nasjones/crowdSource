@@ -92,7 +92,7 @@ function ProductFormController({
 					label="Amount Sought"
 					name="amountSought"
 					inputMode="decimal"
-					inputProps={{ step: ".01", min: ".01", max: "9999999.99" }}
+					inputProps={{ step: ".01", min: "1", max: "9999999.99" }}
 					startAdornment={<InputAdornment position="start">$</InputAdornment>}
 					required
 				/>

@@ -47,7 +47,6 @@ export interface ProductCardInfo {
 }
 
 export interface ProductFullInfo extends ProductCardInfo {
-	funded: string;
 	description: string;
 }
 

@@ -1,11 +1,9 @@
-import React, { useState } from "react";
-
+import { useState } from "react";
 import {
 	useStripe,
 	useElements,
 	PaymentElement,
 } from "@stripe/react-stripe-js";
-import { useLocation } from "react-router";
 
 const CheckoutForm = ({ returnUrl }: { returnUrl: string }) => {
 	const stripe = useStripe();
@@ -30,7 +28,6 @@ const CheckoutForm = ({ returnUrl }: { returnUrl: string }) => {
 
 		if (error) {
 			setErrorMessage(error.message!);
-		} else {
 		}
 	};
 

@@ -25,7 +25,7 @@ function SignUpFormController({
 	const navigate = useNavigate();
 	useEffect(() => {
 		if (CheckLogin()) navigate("/");
-	}, []);
+	}, [navigate]);
 
 	const handleChange = (evt: ChangeEvent<HTMLFormElement>) => {
 		const { name, value } = evt.target;
