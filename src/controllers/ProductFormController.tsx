@@ -1,5 +1,5 @@
 import { ProductData, ProductFormProps } from "../interfaces";
-import { ChangeEvent, FormEvent } from "react";
+import React, { ChangeEvent, FormEvent } from "react";
 import ProductFormModel from "../models/ProductFormModel";
 import {
 	FormControl,

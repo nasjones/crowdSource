@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useEffect } from "react";
+import React, { ChangeEvent, FormEvent, useEffect } from "react";
 import {
 	FormControl,
 	InputLabel,
@@ -35,7 +35,7 @@ function SignUpFormController({
 	};
 
 	const togglePWVisibility = () => {
-		VisibilityUpdate(!PwVisibility)!;
+		VisibilityUpdate(!PwVisibility);
 	};
 
 	const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {

@@ -1,5 +1,5 @@
 import { InvestControllerProps } from "../interfaces";
-import { ChangeEvent, FormEvent } from "react";
+import React, { ChangeEvent, FormEvent } from "react";
 import { useParams, useNavigate } from "react-router";
 import {
 	FormControl,

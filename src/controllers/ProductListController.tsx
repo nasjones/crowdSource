@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProductListModel from "../models/ProductListModel";
 import { ProductCardInfo } from "../interfaces";
 import ProductCard from "../views/ProductCard";

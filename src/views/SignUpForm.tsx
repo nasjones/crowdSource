@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Card } from "@mui/material";
 import { Link } from "react-router-dom";
 import SignUpFormController from "../controllers/SignUpFormController";

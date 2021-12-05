@@ -1,5 +1,6 @@
 import { InitiatePaymentAuth } from "../Helpers";
 import RedirectModel from "../models/RedirectModel";
+import React from "react";
 
 function Redirecting() {
 	const Redirect = async () => {

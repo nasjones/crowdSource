@@ -1,3 +1,4 @@
+import React from "react";
 import { ProductCardInfo } from "../interfaces";
 import {
 	Card,

@@ -2,7 +2,7 @@ import { Card, Button } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { ClearSession } from "../Helpers";
 import AuthContext from "../AuthContext";
-import { FormEvent, useContext, useEffect } from "react";
+import React, { FormEvent, useContext, useEffect } from "react";
 
 function Logout() {
 	const navigate = useNavigate();

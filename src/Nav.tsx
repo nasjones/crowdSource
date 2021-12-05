@@ -1,7 +1,7 @@
 import { AppBar } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import AuthContext from "./AuthContext";
-import { useContext } from "react";
+import React, { useContext } from "react";
 
 function Nav() {
 	const { auth } = useContext(AuthContext);

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CardHeader, CardContent, Typography } from "@mui/material";
 import ProductDisplayModel from "../models/ProductDisplayModel";
 import { ProductFullInfo } from "../interfaces";

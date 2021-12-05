@@ -1,3 +1,4 @@
+import React from "react";
 import ProductDisplayController from "../controllers/ProductDisplayController";
 import { Card } from "@mui/material";
 import { useParams } from "react-router";
