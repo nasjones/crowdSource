@@ -7,7 +7,7 @@ import AuthContext from "./AuthContext";
 import * as dotenv from "dotenv";
 
 function App() {
-	dotenv.config({ path: "./.env" });
+	dotenv.config({ path: "../.env" });
 
 	const [auth, setAuth] = useState<boolean>(CheckLogin());
 	return (
