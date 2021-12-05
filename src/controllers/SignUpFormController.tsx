@@ -45,7 +45,6 @@ function SignUpFormController({
 			FormErrorUpdate({ error: true, message: response.message });
 		} else {
 			const paymentResponse = await SignUpFormModel.paymentAuth();
-			console.log(paymentResponse);
 			InitiatePaymentAuth(paymentResponse.accountLink.url);
 		}
 	};

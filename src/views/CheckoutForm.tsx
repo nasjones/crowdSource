@@ -17,8 +17,6 @@ const CheckoutForm = ({ returnUrl }: { returnUrl: string }) => {
 		if (!stripe || !elements) {
 			return;
 		}
-
-		console.log(elements);
 		const { error } = await stripe.confirmPayment({
 			elements,
 			confirmParams: {

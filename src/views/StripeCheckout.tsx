@@ -6,8 +6,7 @@ import { useLocation } from "react-router";
 import { Card } from "@mui/material";
 
 const stripePromise = loadStripe(
-	process.env.STRIPE_KEY ||
-		"pk_test_51JzQjnAy5vV2xzISgvXuuHnHlbrj8NlV6HGwAkN5woPxqyVMeUFKdwVvESulSUeEwdBRn1bitvpnTroyiohlZjWR00BOx8aQ6c"
+	"pk_live_51JzQjnAy5vV2xzISx1lVztecJGVWH6ATszdodFNO7DdahFh52WNOTH7TC45BI3QkZeusUASgAUYhcdQCzbvfHzrK00JrhsoxIm"
 );
 
 function StripeCheckout(props: any) {

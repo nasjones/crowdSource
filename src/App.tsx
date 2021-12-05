@@ -4,9 +4,11 @@ import AppRoutes from "./AppRoutes";
 import { CheckLogin } from "./Helpers";
 import React, { useState } from "react";
 import AuthContext from "./AuthContext";
-require("dotenv").config();
+import * as dotenv from "dotenv";
 
 function App() {
+	dotenv.config({ path: "./.env" });
+
 	const [auth, setAuth] = useState<boolean>(CheckLogin());
 	return (
 		<div className="App">

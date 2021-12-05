@@ -6,7 +6,6 @@ class InvestFormModel {
 		const response = await Api.Post("/investments", {
 			...data,
 		});
-		console.log(response);
 
 		return response;
 	}
