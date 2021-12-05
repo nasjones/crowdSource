@@ -4,6 +4,11 @@ import { Link } from "react-router-dom";
 import SignUpFormController from "../controllers/SignUpFormController";
 import { SignUpData, AlertStatus } from "../interfaces";
 
+/**
+ * Display for the sign up form presented to user and contains
+ * the essential state handling of the form
+ * @returns
+ */
 function SignUpForm() {
 	const [FormValues, FormValuesUpdate] = useState<SignUpData>({
 		username: "",

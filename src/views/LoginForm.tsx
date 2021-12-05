@@ -4,7 +4,11 @@ import { Link, useNavigate } from "react-router-dom";
 import LoginFormController from "../controllers/LoginFormController";
 import { LoginData, AlertStatus } from "../interfaces";
 import AuthContext from "../AuthContext";
-
+/**
+ * Front facing user login for display of how errors have occured
+ * and what might be wrong
+ * @returns
+ */
 function LoginForm() {
 	const navigate = useNavigate();
 	const AuthStatus = useContext(AuthContext);

@@ -11,6 +11,10 @@ import Redirecting from "./views/Redirecting";
 import StripeCheckout from "./views/StripeCheckout";
 import NotFound from "./NotFound";
 
+/**
+ * Handles the routing logic for the app using react router dom
+ * @returns
+ */
 function AppRoutes() {
 	return (
 		<div id="spacer">

@@ -14,6 +14,13 @@ import { CheckLogin, InitiatePaymentAuth } from "../Helpers";
 import { useNavigate } from "react-router-dom";
 import SubmitButton from "../views/SubmitButton";
 
+/**
+ * SignUpController handles the functions required to operate
+ * the Sign up form and handles the functions via the signupformModel
+ * handles error responses as well
+ * @param
+ * @returns SignUpFormController
+ */
 function SignUpFormController({
 	FormValues,
 	FormValuesUpdate,
@@ -60,13 +67,6 @@ function SignUpFormController({
 			onSubmit={handleSubmit}
 		>
 			<h1>Sign Up</h1>
-			{/* <div className="formError">
-				{FormError.error && (
-					<FormHelperText error={true} className="formError">
-						{FormError.message}
-					</FormHelperText>
-				)}
-			</div> */}
 			<FormControl variant="outlined" className="formInput">
 				<InputLabel htmlFor="firstName">First Name</InputLabel>
 				<OutlinedInput

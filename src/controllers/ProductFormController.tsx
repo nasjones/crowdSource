@@ -10,6 +10,13 @@ import {
 } from "@mui/material";
 import SubmitButton from "../views/SubmitButton";
 
+/**
+ * ProductFormController handles the functions required to operate
+ * the Product form to create and post new products and handles
+ * the functions via the ProductformModel
+ * @param
+ * @returns ProductFormController
+ */
 function ProductFormController({
 	FormValues,
 	FormValuesUpdate,
@@ -50,13 +57,7 @@ function ProductFormController({
 			onSubmit={handleSubmit}
 		>
 			<h1>Product Form</h1>
-			{/* <div className="formError">
-				{FormError.error && (
-					<FormHelperText error={true} className="formError">
-						{FormError.message}
-					</FormHelperText>
-				)}
-			</div> */}
+
 			<FormControl variant="outlined" className="formInput">
 				<InputLabel htmlFor="title">Title</InputLabel>
 				<OutlinedInput

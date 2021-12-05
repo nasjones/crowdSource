@@ -4,6 +4,11 @@ import { ClearSession } from "../Helpers";
 import AuthContext from "../AuthContext";
 import React, { FormEvent, useContext, useEffect } from "react";
 
+/**
+ * Display of 'form' for user to signout or return to the app
+ *
+ * @returns
+ */
 function Logout() {
 	const navigate = useNavigate();
 	const AuthStatus = useContext(AuthContext);

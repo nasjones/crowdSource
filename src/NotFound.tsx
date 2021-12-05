@@ -2,6 +2,10 @@ import React from "react";
 import { Card } from "@mui/material";
 import { Link } from "react-router-dom";
 
+/**
+ * Display for the not found routes
+ * @returns
+ */
 function NotFound() {
 	return (
 		<Card elevation={3} id="notFound">

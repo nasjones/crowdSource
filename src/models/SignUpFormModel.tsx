@@ -2,6 +2,10 @@ import Api from "../Api";
 import { SignUpData } from "../interfaces";
 import { AttachUserToSession } from "../Helpers";
 
+/**
+ * handles the signup forms initial posting as well as the authorization
+ *  endpoint for the user
+ */
 class SignUpFormModel {
 	static async submit(data: SignUpData) {
 		const response = await Api.Post("/auth/register", {

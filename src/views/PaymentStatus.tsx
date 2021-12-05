@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useStripe } from "@stripe/react-stripe-js";
 
+/**
+ * Payment Status display for the stripe api
+ * @returns
+ */
 const PaymentStatus = () => {
 	const stripe = useStripe();
 	const [message, setMessage] = useState("");

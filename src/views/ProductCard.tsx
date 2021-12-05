@@ -9,6 +9,11 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
+/**
+ * Display for the product card places the data on a card display
+ * @param
+ * @returns
+ */
 function ProductCard({
 	title,
 	synopsis,

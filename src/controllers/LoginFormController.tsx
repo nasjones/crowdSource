@@ -13,6 +13,12 @@ import { useNavigate } from "react-router-dom";
 import { CheckLogin } from "../Helpers";
 import SubmitButton from "../views/SubmitButton";
 
+/**
+ * LoginFormController handles the functions required to operate
+ * the Login form and handles the functions via the LoginformModel
+ * @param
+ * @returns LoginFormController
+ */
 function LoginFormController({
 	FormValues,
 	FormValuesUpdate,

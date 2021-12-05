@@ -4,7 +4,12 @@ import {
 	useElements,
 	PaymentElement,
 } from "@stripe/react-stripe-js";
-
+/**
+ * Checkout form for use with the stripe api this handles the logic
+ * to parse payments
+ * @param param0
+ * @returns CheckoutForm
+ */
 const CheckoutForm = ({ returnUrl }: { returnUrl: string }) => {
 	const stripe = useStripe();
 	const elements = useElements();

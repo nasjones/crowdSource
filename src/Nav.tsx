@@ -3,6 +3,10 @@ import { NavLink } from "react-router-dom";
 import AuthContext from "./AuthContext";
 import React, { useContext } from "react";
 
+/**
+ * Nav for the app displayed on every route
+ * @returns
+ */
 function Nav() {
 	const { auth } = useContext(AuthContext);
 

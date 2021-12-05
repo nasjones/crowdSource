@@ -1,5 +1,9 @@
 import Api from "../Api";
 
+/**
+ * Handles the fetch of the product from the endpoint for the
+ * productdisplay
+ */
 class ProductDisplayModel {
 	static async getProduct(id: string) {
 		if (id === undefined) return {};

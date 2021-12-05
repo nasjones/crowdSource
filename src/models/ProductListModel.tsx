@@ -1,5 +1,9 @@
 import Api from "../Api";
 
+/**
+ * Fetches all of the products from the api endpoint and preps
+ * them for return to the ProductList
+ */
 class ProductListModel {
 	static async getProducts() {
 		let response = await Api.Fetch("/products");

@@ -3,7 +3,11 @@ import React, { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { CheckLogin } from "../Helpers";
 import AuthContext from "../AuthContext";
-
+/**
+ * Home route display handles greeting users and is the base
+ * route for navigation
+ * @returns
+ */
 function Home() {
 	const { setAuth } = useContext(AuthContext);
 	useEffect(() => {

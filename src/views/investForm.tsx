@@ -5,6 +5,11 @@ import AuthContext from "../AuthContext";
 import { Link } from "react-router-dom";
 import { AlertStatus } from "../interfaces";
 
+/**
+ * Invest Form is the front facing user access to the full investForm
+ * process but the logic is handled by trickling down
+ * @returns
+ */
 function InvestForm() {
 	const AuthStatus = useContext(AuthContext);
 

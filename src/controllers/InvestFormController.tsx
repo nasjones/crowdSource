@@ -10,6 +10,12 @@ import {
 import InvestFormModel from "../models/InvestFormModel";
 import SubmitButton from "../views/SubmitButton";
 
+/**
+ * InvestFormController handles the functions required to operate
+ * the Invest form and handles the functions via the InvestformModel
+ * @param
+ * @returns InvestFormController
+ */
 function InvestFormController({
 	Amount,
 	AmountUpdate,

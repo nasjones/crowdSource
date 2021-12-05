@@ -2,6 +2,10 @@ import { InitiatePaymentAuth } from "../Helpers";
 import RedirectModel from "../models/RedirectModel";
 import React from "react";
 
+/**
+ * Redirecting route to handle if user needs to reauth their payment
+ * @returns
+ */
 function Redirecting() {
 	const Redirect = async () => {
 		const response = await RedirectModel.paymentAuth();

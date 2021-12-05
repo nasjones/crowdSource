@@ -6,6 +6,10 @@ import React, { useState } from "react";
 import AuthContext from "./AuthContext";
 import * as dotenv from "dotenv";
 
+/**
+ * Base of the app wraps all app function
+ * @returns
+ */
 function App() {
 	dotenv.config({ path: "../.env" });
 

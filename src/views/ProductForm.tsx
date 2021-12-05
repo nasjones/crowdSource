@@ -5,6 +5,10 @@ import ProductFormController from "../controllers/ProductFormController";
 import { ProductData, AlertStatus } from "../interfaces";
 import AuthContext from "../AuthContext";
 
+/**
+ * Product Form display
+ * @returns
+ */
 function ProductForm() {
 	const navigate = useNavigate();
 	const AuthStatus = useContext(AuthContext);
