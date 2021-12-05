@@ -7,7 +7,13 @@ class SignUpFormModel {
 		const response = await Api.Post("/auth/register", {
 			...data,
 		});
-		AttachUserToSession(response.data.token, data.username);
+		if (!response.error)
+			AttachUserToSession(response.data.token, data.username);
+		return response;
+	}
+
+	static async paymentAuth() {
+		const response = await Api.Fetch("/auth/payment");
 		return response;
 	}
 }

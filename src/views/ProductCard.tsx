@@ -17,7 +17,7 @@ function ProductCard({
 }: ProductCardInfo) {
 	const navigate = useNavigate();
 	return (
-		<Card>
+		<Card elevation={5}>
 			<CardHeader title={title} subheader={`By: ${fullName}`} />
 			<CardContent>
 				<Typography variant="body1" className="synopsis">

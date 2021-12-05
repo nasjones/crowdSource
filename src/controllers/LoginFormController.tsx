@@ -68,6 +68,7 @@ function LoginFormController({
 					label="Username"
 					name="username"
 					autoComplete="current-username"
+					inputProps={{ minLength: "4", maxLength: "25" }}
 					required
 				/>
 			</FormControl>
@@ -79,6 +80,7 @@ function LoginFormController({
 					name="password"
 					label="Password"
 					autoComplete="current-password"
+					inputProps={{ minLength: "4", maxLength: "25" }}
 					required
 					endAdornment={
 						<InputAdornment position="end">

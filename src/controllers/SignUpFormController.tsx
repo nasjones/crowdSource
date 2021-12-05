@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent } from "react";
+import { ChangeEvent, FormEvent, useEffect } from "react";
 import {
 	FormControl,
 	InputLabel,
@@ -11,7 +11,7 @@ import {
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import SignUpFormModel from "../models/SignUpFormModel";
 import { SignUpData, SignUpProps } from "../interfaces";
-import { CheckLogin } from "../Helpers";
+import { CheckLogin, InitiatePaymentAuth } from "../Helpers";
 import { useNavigate } from "react-router-dom";
 
 function SignUpFormController({
@@ -23,8 +23,9 @@ function SignUpFormController({
 	VisibilityUpdate,
 }: SignUpProps) {
 	const navigate = useNavigate();
-
-	if (CheckLogin()) navigate("/");
+	useEffect(() => {
+		if (CheckLogin()) navigate("/");
+	}, []);
 
 	const handleChange = (evt: ChangeEvent<HTMLFormElement>) => {
 		const { name, value } = evt.target;
@@ -40,10 +41,12 @@ function SignUpFormController({
 	const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
 		evt.preventDefault();
 		const response: any = await SignUpFormModel.submit(FormValues);
-		if (!response.success) {
+		if (response.error) {
 			FormErrorUpdate({ error: true, message: response.message });
 		} else {
-			navigate("/");
+			const paymentResponse = await SignUpFormModel.paymentAuth();
+			console.log(paymentResponse);
+			InitiatePaymentAuth(paymentResponse.accountLink.url);
 		}
 	};
 
@@ -89,7 +92,7 @@ function SignUpFormController({
 				<OutlinedInput
 					id="email"
 					type="email"
-					label="Email"
+					label="Email Address"
 					name="email"
 					autoComplete="Email address"
 					required
@@ -103,8 +106,10 @@ function SignUpFormController({
 					label="Username"
 					name="username"
 					autoComplete="current-username"
+					inputProps={{ minLength: "4", maxLength: "25" }}
 					required
 				/>
+				<FormHelperText>minLength:4 / maxLength:25</FormHelperText>
 			</FormControl>
 			<FormControl variant="outlined" className="formInput">
 				<InputLabel htmlFor="signUpPassword">Password</InputLabel>
@@ -114,6 +119,7 @@ function SignUpFormController({
 					name="password"
 					label="Password"
 					autoComplete="current-password"
+					inputProps={{ minLength: "4", maxLength: "25" }}
 					required
 					endAdornment={
 						<InputAdornment position="end">
@@ -127,6 +133,7 @@ function SignUpFormController({
 						</InputAdornment>
 					}
 				/>
+				<FormHelperText>minLength:4 / maxLength:25</FormHelperText>
 			</FormControl>
 
 			<Button variant="outlined" type="submit" className="formSubmit">

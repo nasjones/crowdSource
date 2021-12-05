@@ -1,11 +1,11 @@
 import ProductListController from "../controllers/ProductListController";
-
+import { Card } from "@mui/material";
 function ProductList() {
 	return (
-		<div>
+		<Card elevation={3}>
 			<h1>Products</h1>
 			<ProductListController />
-		</div>
+		</Card>
 	);
 }
 

@@ -6,6 +6,8 @@ import SignUpForm from "./views/SignUpForm";
 import ProductList from "./views/ProductList";
 import ProductDisplay from "./views/ProductDisplay";
 import ProductForm from "./views/ProductForm";
+import Redirecting from "./views/Redirecting";
+import StripeCheckout from "./views/StripeCheckout";
 import NotFound from "./NotFound";
 
 function AppRoutes() {
@@ -19,7 +21,8 @@ function AppRoutes() {
 				<Route path="/products" element={<ProductList />} />
 				<Route path="/products/:id" element={<ProductDisplay />} />
 				<Route path="/createproduct" element={<ProductForm />} />
-
+				<Route path="/paymentauth" element={<Redirecting />} />
+				<Route path="/processpayment" element={<StripeCheckout />} />
 				<Route path="*" element={<NotFound />} />
 			</Routes>
 		</div>

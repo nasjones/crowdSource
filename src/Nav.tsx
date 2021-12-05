@@ -9,6 +9,7 @@ function Nav() {
 	return (
 		<AppBar id="navBar">
 			<div id="navLeft">
+				{auth && <span>{window.sessionStorage.getItem("username")}</span>}
 				<NavLink to="/">Home</NavLink>
 				<NavLink to="/products">Products</NavLink>
 			</div>

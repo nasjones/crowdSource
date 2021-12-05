@@ -12,11 +12,21 @@ const headers = {
  */
 async function Fetch(endpoint: string) {
 	try {
+		const headers = {
+			Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+		};
 		ensureLeadingSlash(endpoint);
 		let response = await axios.get(`${BASE_API_URL}${endpoint}`, { headers });
 		return response.data;
-	} catch (err) {
-		console.error(err);
+	} catch (err: any) {
+		console.log(err);
+		const message = err.response
+			? err.response.data.error.message
+			: "Server Error";
+		return {
+			error: true,
+			message: message,
+		};
 	}
 }
 
@@ -27,6 +37,9 @@ async function Fetch(endpoint: string) {
  */
 async function Post(endpoint: string, data: object = {}) {
 	try {
+		const headers = {
+			Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+		};
 		ensureLeadingSlash(endpoint);
 		let response = await axios.post(`${BASE_API_URL}${endpoint}`, data, {
 			headers,

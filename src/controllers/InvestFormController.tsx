@@ -1,6 +1,6 @@
 import { InvestControllerProps } from "../interfaces";
 import { ChangeEvent, FormEvent } from "react";
-import { useParams } from "react-router";
+import { useParams, useNavigate, useLocation } from "react-router";
 import {
 	FormControl,
 	InputLabel,
@@ -19,6 +19,7 @@ function InvestFormController({
 	FormErrorUpdate,
 }: InvestControllerProps) {
 	const { id } = useParams();
+	const navigate = useNavigate();
 	const username = window.sessionStorage.getItem("username");
 	const handleChange = (evt: ChangeEvent<HTMLFormElement>) => {
 		const { value } = evt.target;
@@ -35,7 +36,13 @@ function InvestFormController({
 		if (response.error) {
 			FormErrorUpdate({ error: true, message: response.message });
 		} else {
-			AlertUpdate({ message: response.data.message, alert: true });
+			navigate("/processpayment", {
+				state: {
+					secret: response.data.client_secret,
+					returnUrl: window.location.href,
+				},
+			});
+			// AlertUpdate({ message: response.data.message, alert: true });
 		}
 	};
 	return (

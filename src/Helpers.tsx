@@ -10,3 +10,8 @@ export function ClearSession() {
 export function CheckLogin() {
 	return !!sessionStorage.getItem("token");
 }
+
+export function InitiatePaymentAuth(authURL: string) {
+	window.location.href = authURL;
+	return null;
+}

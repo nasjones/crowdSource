@@ -7,6 +7,7 @@ class LoginFormModel {
 		const response = await Api.Post("/auth/login", {
 			...data,
 		});
+
 		if (!response.error)
 			AttachUserToSession(response.data.token, data.username);
 		return response;

@@ -68,8 +68,9 @@ function ProductFormController({
 					type="text"
 					label="synopsis"
 					name="synopsis"
-					required
+					inputProps={{ maxLength: "100" }}
 				/>
+				<FormHelperText>Quick summary: not required.</FormHelperText>
 			</FormControl>
 			<FormControl variant="outlined" className="formInput">
 				<InputLabel htmlFor="description">Description</InputLabel>
