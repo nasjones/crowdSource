@@ -15,7 +15,7 @@ async function Fetch(endpoint: string) {
 		ensureLeadingSlash(endpoint);
 		let response = await axios.get(`${BASE_API_URL}${endpoint}`, { headers });
 		return response.data;
-	} catch (err) {
+	} catch (err: any) {
 		console.log(err);
 		const message = err.response
 			? err.response.data.error.message
@@ -42,7 +42,7 @@ async function Post(endpoint: string, data: object = {}) {
 			headers,
 		});
 		return { error: false, message: "", data: response.data };
-	} catch (err) {
+	} catch (err: any) {
 		console.log(err);
 		const message = err.response
 			? err.response.data.error.message
